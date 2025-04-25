@@ -1,14 +1,22 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {Logo} from '../../assets';
 
-const index = () => {
+const Splashscreen1 = () => {
   return (
-    <View>
-      <Text>index</Text>
+    <View style={styles.container}>
+      <Logo />
     </View>
   );
 };
 
-export default index;
+export default Splashscreen1;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#FFFFFF',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
