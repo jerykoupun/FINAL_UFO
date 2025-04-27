@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Logo} from '../../assets';
+import TextInput from '../../components/molocules/Textinput';
 
 const Splashscreen1 = () => {
   return (
@@ -18,5 +19,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingVertical: 239,
   },
 });
