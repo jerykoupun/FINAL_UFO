@@ -1,14 +1,29 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-const index = () => {
+const Button = ({label, color = '#02CF8E', textColor = '#020202'}) => {
   return (
-    <View>
-      <Text>index</Text>
-    </View>
+    <TouchableOpacity style={styles.button(color)} activeOpacity={0.5}>
+      <Text style={styles.label(textColor)}>{label}</Text>
+    </TouchableOpacity>
   );
 };
 
-export default index;
+export default Button;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  button: color => ({
+    backgroundColor: color,
+    borderRadius: 8,
+    paddingVertical: 9,
+    paddingHorizontal: 69,
+    width: 321,
+    height: 40,
+  }),
+  label: textColor => ({
+    textAlign: 'center',
+    fontFamily: 'Poppins-bold',
+    fontSize: 16,
+    color: textColor,
+  }),
+});
