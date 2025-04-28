@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Logo} from '../../assets';
-import TextInput from '../../components/molocules/Textinput';
+import Header from '../../components/molocules/Header';
 
 const Splashscreen1 = () => {
   return (
