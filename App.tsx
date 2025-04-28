@@ -5,6 +5,6 @@ import SignUp from './src/pages/Signup';
 import SignIn from './src/pages/Signin';
 
 const App = () => {
-  return <SignIn />;
+  return <SignUp />;
 };
 export default App;
