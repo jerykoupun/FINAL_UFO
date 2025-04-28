@@ -1,6 +1,7 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {ScrollView} from 'react-native';
+import {ScrollView, TouchableOpacity} from 'react-native';
 import React from 'react';
+import Gap from '../../components/atom/Gap';
 
 import {
   Logo,
@@ -9,43 +10,70 @@ import {
   Profileicon,
   Lostandfounicon,
   Fullscreenicon,
+  Image1,
+  Image2,
 } from '../../assets';
 
 const Dashboard = () => {
   return (
-    <ScrollView style={styles.page}>
+    <View style={styles.page}>
       <View style={styles.topBar}>
-        <Logo width={40} height={40} />
-        <Profileicon width={30} height={30} />
+        <Logo width={34} height={32} />
+        <Profileicon width={31} height={31} />
       </View>
       <Text style={styles.welcomeText}>Hi, Jery Koupun</Text>
       <View style={styles.menuContainer}>
-        <View style={styles.menuItem}>
-          <Organizationicon width={40} height={40} />
+        <TouchableOpacity style={styles.menuItem}>
+          <Organizationicon width={38} height={38} />
+          <Gap height={3} />
           <Text style={styles.menuLabel}>Organization</Text>
-        </View>
-        <View style={styles.menuItem}>
-          <Announcementicon width={40} height={40} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Announcementicon width={32} height={38} />
+          <Gap height={3} />
           <Text style={styles.menuLabel}>Announcement</Text>
-        </View>
-        <View style={styles.menuItem}>
-          <Lostandfounicon width={40} height={40} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem}>
+          <Lostandfounicon width={38} height={38} />
+          <Gap height={3} />
           <Text style={styles.menuLabel}>Lost and Found</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <Text style={styles.sectionTitle}>Latest Announcement</Text>
-      <View style={styles.card}>
-        <Text style={styles.eventTitle}>Filkom Day</Text>
-        <Text style={styles.eventDate}>Today</Text>
-        <View style={styles.cardFooter}>
-          <View style={styles.footerLeft}>
-            <Profileicon width={18} height={18} />
-            <Text style={styles.footerText}>FILKOM</Text>
+      <ScrollView>
+        <View style={styles.card}>
+          <Image1 width={190} height={182} />
+          <Gap height={12} />
+          <Text style={styles.eventTitle}>Kspm Day</Text>
+          <Gap height={3} />
+          <Text style={styles.eventDate}>Today</Text>
+          <Gap height={11} />
+          <View style={styles.cardFooter}>
+            <View style={styles.footerLeft}>
+              <Profileicon width={31} height={31} />
+              <Text style={styles.footerText}>KSPM</Text>
+            </View>
+            <Fullscreenicon width={16} height={20} />
           </View>
-          <Fullscreenicon width={18} height={18} />
         </View>
-      </View>
-    </ScrollView>
+        <Gap height={17} />
+        <View style={styles.card}>
+          <Image2 width={190} height={182} />
+          <Gap height={12} />
+          <Text style={styles.eventTitle}>Proxo Coris</Text>
+          <Gap height={3} />
+          <Text style={styles.eventDate}>Today</Text>
+          <Gap height={11} />
+          <View style={styles.cardFooter}>
+            <View style={styles.footerLeft}>
+              <Profileicon width={31} height={31} />
+              <Text style={styles.footerText}>UVICS</Text>
+            </View>
+            <Fullscreenicon width={16} height={20} />
+          </View>
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 
@@ -56,70 +84,66 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 20,
-    paddingTop: 20,
   },
   topBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    marginTop: 20,
+    paddingHorizontal: 10,
   },
   welcomeText: {
     fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#000',
+    fontFamily: 'Poppins-Medium',
+    marginTop: 45,
+    paddingLeft: 10,
+    color: '#000000',
   },
   menuContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 30,
+    marginTop: 57,
+    marginBottom: 37,
   },
   menuItem: {
     alignItems: 'center',
+    paddingHorizontal: 66,
   },
   menuLabel: {
-    marginTop: 8,
-    fontSize: 12,
-    color: '#000',
+    fontFamily: 'Poppins-Regular',
+    fontSize: 11,
+    color: '#000000',
   },
   sectionTitle: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-Medium',
     marginBottom: 16,
-    color: '#000',
+    color: '#000000',
+    paddingLeft: 10,
+    marginBottom: 26,
   },
   card: {
     backgroundColor: '#FFF',
     borderRadius: 8,
-    elevation: 3,
+    elevation: 5,
     padding: 16,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowColor: '#3674B5',
     marginBottom: 30,
-  },
-  eventImage: {
-    width: '100%',
-    height: 180,
-    borderRadius: 8,
-    marginBottom: 12,
+    marginHorizontal: 10,
+    alignItems: 'center',
   },
   eventTitle: {
     fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 4,
-    color: '#000',
+    fontFamily: 'Poppins-Medium',
+    color: '#000000',
   },
   eventDate: {
-    fontSize: 12,
-    color: '#666',
-    marginBottom: 16,
+    fontSize: 14,
+    fontFamily: 'Poppins-Light',
+    color: '#000000',
   },
   cardFooter: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
   },
   footerLeft: {
@@ -127,9 +151,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   footerText: {
-    marginLeft: 8,
-    fontSize: 12,
-    color: '#000',
-    fontWeight: '500',
+    marginLeft: 10,
+    fontSize: 16,
+    color: '#000000',
+    fontFamily: 'Poppins-Medium',
+    paddingRight: 180,
   },
 });
