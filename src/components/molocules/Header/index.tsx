@@ -1,29 +1,31 @@
-import {StyleSheet, Text, View, TextInput as Input} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {ArrowBack} from '../../../assets';
 
-const TextInput = ({label, placeholder, color = '#8D92A3'}) => {
+const Header = ({title}) => {
   return (
-    <View>
-      <Text style={styles.label}>{label}</Text>
-      <Input placeholder={placeholder} style={styles.input(color)} />
+    <View style={styles.container}>
+      <ArrowBack width={24} height={15} />
+      <Text style={styles.title}>{title}</Text>
     </View>
   );
 };
 
-export default TextInput;
+export default Header;
 
 const styles = StyleSheet.create({
-  label: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 16,
-    marginBottom: 6,
-    color: '#020202',
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    paddingTop: 10,
+    paddingHorizontal: 16,
+    height: 60,
   },
-  input: color => ({
-    borderWidth: 1,
-    borderColor: '#020202',
-    borderRadius: 8,
-    padding: 10,
-    color: color,
-  }),
+  title: {
+    fontSize: 16,
+    fontFamily: 'Poppins-Medium',
+    color: '#000000',
+    paddingLeft: 93,
+  },
 });
