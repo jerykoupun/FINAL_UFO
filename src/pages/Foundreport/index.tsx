@@ -1,38 +1,42 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import Gap from '../../components/atom/Gap';
+import Button from '../../components/atom/Button';
 import Header from '../../components/molocules/Header';
 import TextInput from '../../components/molocules/Textinput2';
-import Button from '../../components/atom/Button';
-import Gap from '../../components/atom/Gap';
 
-const FoundReport = () => {
+const ReportFoundItem = () => {
   return (
     <View style={styles.page}>
-      <Header title="Report Lost Item" />
-      <View style={styles.container}>
-        <TextInput placeholder={'Input Item Name'} label={'Item Name'} />
+      <Header title="Report Found Item" />
+      <ScrollView contentContainerStyle={styles.container}>
+        <TextInput label="Item Name" placeholder="Input Item Name" />
         <Gap height={20} />
-        <TextInput
-          placeholder={'Enter Found Location'}
-          label={'Found Location'}
-        />
+        <TextInput label="Found Location" placeholder="Enter Found Location" />
         <Gap height={20} />
-        <TextInput placeholder={'Enter Found Time'} label={'Found Time'} />
+        <TextInput label="Found Time" placeholder="Enter Found Time" />
         <Gap height={20} />
-        <TextInput
-          placeholder={'Enter Your Phone Number'}
-          label={'Your Number'}
-        />
+        <TextInput label="Your Number" placeholder="Enter your phone number" />
         <Gap height={20} />
-        <TextInput placeholder={'Upload Image'} label={'Upload Item Photo'} />
+        <Text style={styles.uploadLabel}>Upload Item Photo</Text>
+        <Gap height={20} />
+        <TouchableOpacity style={styles.uploadBox}>
+          <Text style={styles.uploadText}>Upload Image</Text>
+        </TouchableOpacity>
         <Gap height={20} />
         <Button label="Submit" />
-      </View>
+      </ScrollView>
     </View>
   );
 };
 
-export default FoundReport;
+export default ReportFoundItem;
 
 const styles = StyleSheet.create({
   page: {
@@ -40,9 +44,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   container: {
-    flex: 1,
+    paddingTop: 57,
+    backgroundColor: '#FFF',
+    justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 24,
-    marginTop: 40,
+  },
+  uploadLabel: {
+    fontSize: 16,
+    fontFamily: 'Poppins-Medium',
+    color: '#000000',
+    paddingRight: 170,
+  },
+  uploadBox: {
+    borderWidth: 1,
+    borderColor: '#578FCA',
+    borderRadius: 8,
+    paddingVertical: 7,
+    alignItems: 'center',
+    width: 321,
+    height: 40,
+  },
+  uploadText: {
+    color: '#578FCA',
+    fontSize: 16,
+    fontFamily: 'Poppins-Reguler',
   },
 });
