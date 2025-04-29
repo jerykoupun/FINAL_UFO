@@ -4,8 +4,9 @@ import Splashscreen2 from './src/pages/Splashscreen2';
 import SignUp from './src/pages/Signup';
 import SignIn from './src/pages/Signin';
 import Dashboard from './src/pages/Dashboard';
+import Organization from './src/pages/Organization';
 
 const App = () => {
-  return <Dashboard />;
+  return <Organization />;
 };
 export default App;

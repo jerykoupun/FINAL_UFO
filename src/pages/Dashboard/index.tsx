@@ -82,7 +82,7 @@ export default Dashboard;
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#FFF',
     paddingHorizontal: 20,
   },
   topBar: {
