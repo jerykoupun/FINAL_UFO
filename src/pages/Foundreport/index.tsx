@@ -24,10 +24,10 @@ const ReportFoundItem = () => {
         <Gap height={20} />
         <TextInput label="Your Number" placeholder="Enter your phone number" />
         <Gap height={20} />
-        <Text style={styles.uploadLabel}>Upload Item Photo</Text>
+        <Text style={styles.LabelUpload}>Upload Item Photo</Text>
         <Gap height={20} />
-        <TouchableOpacity style={styles.uploadBox}>
-          <Text style={styles.uploadText}>Upload Image</Text>
+        <TouchableOpacity style={styles.BoxUpload}>
+          <Text style={styles.TextUpload}>Upload Image</Text>
         </TouchableOpacity>
         <Gap height={20} />
         <Button label="Submit" />
@@ -49,13 +49,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  uploadLabel: {
+  LabelUpload: {
     fontSize: 16,
     fontFamily: 'Poppins-Medium',
     color: '#000000',
     paddingRight: 170,
   },
-  uploadBox: {
+  BoxUpload: {
     borderWidth: 1,
     borderColor: '#578FCA',
     borderRadius: 8,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     width: 321,
     height: 40,
   },
-  uploadText: {
+  TextUpload: {
     color: '#578FCA',
     fontSize: 16,
     fontFamily: 'Poppins-Reguler',
