@@ -6,8 +6,9 @@ import SignIn from './src/pages/Signin';
 import Dashboard from './src/pages/Dashboard';
 import Organization from './src/pages/Organization';
 import Announcement from './src/pages/Announcement';
+import Profile from './src/pages/Profile';
 
 const App = () => {
-  return <Announcement />;
+  return <Profile />;
 };
 export default App;
