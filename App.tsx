@@ -3,8 +3,11 @@ import Splashscreen1 from './src/pages/Splashscreen1';
 import Splashscreen2 from './src/pages/Splashscreen2';
 import SignUp from './src/pages/Signup';
 import SignIn from './src/pages/Signin';
+import Dashboard from './src/pages/Dashboard';
+import Organization from './src/pages/Organization';
+import Lostandfound from './src/pages/Lostandfound';
 
 const App = () => {
-  return <SignUp />;
+  return <Lostandfound />;
 };
 export default App;
