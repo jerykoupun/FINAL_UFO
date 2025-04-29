@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import Gap from '../../components/atom/Gap';
 import {Profileicon} from '../../assets';
 import Header from '../../components/molocules/Header';
@@ -9,20 +9,18 @@ const Profile = () => {
   return (
     <View style={styles.page}>
       <Header title="Profile" />
+
       <View style={styles.container}>
         <View style={styles.avatarWrapper}>
           <Profileicon width={110} height={110} />
         </View>
+        <TextInput label="Username" placeholder="Enter your username" />
         <Gap height={20} />
-        <TextInput label="Name" placeholder="Enter your name" />
-        <TextInput label="Email" placeholder="Enter your email" />
         <TextInput label="Phone Number" placeholder="Enter your phone number" />
+        <Gap height={20} />
+        <TextInput label="Email" placeholder="Enter your Email" />
+        <Gap height={20} />
         <TextInput label="Address" placeholder="Enter your address" />
-        <TextInput
-          label="Password"
-          placeholder="Enter your password"
-          secureTextEntry={true}
-        />
       </View>
     </View>
   );
@@ -36,9 +34,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
   },
   container: {
-    paddingTop: 20,
-    paddingHorizontal: 24,
+    paddingTop: 57,
     alignItems: 'center',
+    paddingHorizontal: 39,
     backgroundColor: '#FFF',
+  },
+  avatarWrapper: {
+    alignItems: 'center',
+    marginBottom: 30,
   },
 });
