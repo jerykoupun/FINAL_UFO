@@ -6,8 +6,10 @@ import SignIn from './src/pages/Signin';
 import Dashboard from './src/pages/Dashboard';
 import Organization from './src/pages/Organization';
 import Lostandfound from './src/pages/Lostandfound';
+import Lostreport from './src/pages/Lostreport';
+import FoundReport from './src/pages/Foundreport';
 
 const App = () => {
-  return <Lostandfound />;
+  return <FoundReport />;
 };
 export default App;
