@@ -1,11 +1,15 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {ArrowBack} from '../../../assets';
+import {useNavigation} from '@react-navigation/native';
 
 const Header = ({title}) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <ArrowBack width={24} height={15} />
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <ArrowBack width={24} height={15} />
+      </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
     </View>
   );

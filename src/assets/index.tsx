@@ -13,6 +13,7 @@ import Galery2 from './galery2.svg';
 import Kacamata from './kacamata.svg';
 import Tas from './tas.svg';
 import Tasbulat from './tasbulat.svg';
+import Null_Photo from './null-photo.png';
 
 export {
   Logo,
@@ -30,4 +31,5 @@ export {
   Kacamata,
   Tas,
   Tasbulat,
+  Null_Photo,
 };

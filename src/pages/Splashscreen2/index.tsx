@@ -2,8 +2,12 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Logo} from '../../assets';
 import Gap from '../../components/atom/Gap';
+import {useEffect} from 'react';
 
-const Splashscreen2 = () => {
+const Splashscreen2 = ({navigation}) => {
+  useEffect(() => {
+    setTimeout(() => navigation.replace('SignIn'), 3000);
+  }, []);
   return (
     <View style={styles.container}>
       <Logo width={132} height={118} />

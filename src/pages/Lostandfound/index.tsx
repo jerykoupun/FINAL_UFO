@@ -6,7 +6,7 @@ import Header from '../../components/molocules/Header';
 import {Fullscreenicon, Tasbulat, Tas, Kacamata} from '../../assets';
 import Button from '../../components/atom/Button';
 
-const Lostandfound = () => {
+const Lostandfound = ({navigation}) => {
   return (
     <View style={styles.page}>
       <Header title="Lost and Found" />
@@ -59,9 +59,17 @@ const Lostandfound = () => {
           </View>
         </View>
         <Gap height={50} />
-        <Button label="Report Lost Item" color="#578FCA" />
+        <Button
+          label="Report Lost Item"
+          color="#578FCA"
+          onPress={() => navigation.navigate('Lostreport')}
+        />
         <Gap height={13} />
-        <Button label="Report Found Item" color="#4AC8F9" />
+        <Button
+          label="Report Found Item"
+          color="#4AC8F9"
+          onPress={() => navigation.navigate('Foundreport')}
+        />
       </ScrollView>
     </View>
   );

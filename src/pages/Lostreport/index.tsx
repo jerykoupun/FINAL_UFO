@@ -11,7 +11,7 @@ import Button from '../../components/atom/Button';
 import Header from '../../components/molocules/Header';
 import TextInput from '../../components/molocules/Textinput2';
 
-const ReportLostItem = () => {
+const ReportLostItem = ({navigation}) => {
   return (
     <View style={styles.page}>
       <Header title="Report Lost Item" />
@@ -30,7 +30,10 @@ const ReportLostItem = () => {
           <Text style={styles.uploadText}>Upload Image</Text>
         </TouchableOpacity>
         <Gap height={20} />
-        <Button label="Submit" />
+        <Button
+          label="Submit"
+          onPress={() => navigation.navigate('Lostandfound')}
+        />
       </ScrollView>
     </View>
   );

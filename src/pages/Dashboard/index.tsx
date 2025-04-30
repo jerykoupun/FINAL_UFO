@@ -14,26 +14,34 @@ import {
   Image2,
 } from '../../assets';
 
-const Dashboard = () => {
+const Dashboard = ({navigation}) => {
   return (
     <View style={styles.page}>
       <View style={styles.topBar}>
         <Logo width={34} height={32} />
-        <Profileicon width={31} height={31} />
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+          <Profileicon width={31} height={31} />
+        </TouchableOpacity>
       </View>
       <Text style={styles.welcomeText}>Hi, Jery Koupun</Text>
       <View style={styles.menuContainer}>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate('Organization')}>
           <Organizationicon width={38} height={38} />
           <Gap height={3} />
           <Text style={styles.menuLabel}>Organization</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate('Announcement')}>
           <Announcementicon width={32} height={38} />
           <Gap height={3} />
           <Text style={styles.menuLabel}>Announcement</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuItem}>
+        <TouchableOpacity
+          style={styles.menuItem}
+          onPress={() => navigation.navigate('Lostandfound')}>
           <Lostandfounicon width={38} height={38} />
           <Gap height={3} />
           <Text style={styles.menuLabel}>Lost and Found</Text>

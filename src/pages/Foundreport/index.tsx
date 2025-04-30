@@ -11,7 +11,7 @@ import Button from '../../components/atom/Button';
 import Header from '../../components/molocules/Header';
 import TextInput from '../../components/molocules/Textinput2';
 
-const ReportFoundItem = () => {
+const ReportFoundItem = ({navigation}) => {
   return (
     <View style={styles.page}>
       <Header title="Report Found Item" />
@@ -30,7 +30,10 @@ const ReportFoundItem = () => {
           <Text style={styles.TextUpload}>Upload Image</Text>
         </TouchableOpacity>
         <Gap height={20} />
-        <Button label="Submit" />
+        <Button
+          label="Submit"
+          onPress={() => navigation.navigate('Lostandfound')}
+        />
       </ScrollView>
     </View>
   );

@@ -5,7 +5,7 @@ import TextInput from '../../components/molocules/Textinput';
 import Button from '../../components/atom/Button';
 import Gap from '../../components/atom/Gap';
 
-const SignIn = () => {
+const SignIn = ({navigation}) => {
   return (
     <View style={styles.page}>
       <View style={styles.container}>
@@ -19,11 +19,18 @@ const SignIn = () => {
         <Gap height={11} />
         <Text style={styles.titlebutton}>Forget Your Password?</Text>
         <Gap height={11} />
-        <Button label="Sign In" />
+        <Button
+          label="Sign In"
+          onPress={() => navigation.navigate('Dashboard')}
+        />
         <Gap height={11} />
         <Text style={styles.titlebutton}>Don't have an account?</Text>
         <Gap height={11} />
-        <Button label="Create New Account" color="#B9B6B6" />
+        <Button
+          label="Create New Account"
+          color="#B9B6B6"
+          onPress={() => navigation.navigate('SignUp')}
+        />
       </View>
     </View>
   );

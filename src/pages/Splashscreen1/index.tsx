@@ -2,8 +2,12 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Logo} from '../../assets';
 import Header from '../../components/molocules/Header';
+import {useEffect} from 'react';
 
-const Splashscreen1 = () => {
+const Splashscreen1 = ({navigation}) => {
+  useEffect(() => {
+    setTimeout(() => navigation.replace('Splashscreen2'), 3000);
+  }, []);
   return (
     <View style={styles.container}>
       <Logo width={132} height={118} />

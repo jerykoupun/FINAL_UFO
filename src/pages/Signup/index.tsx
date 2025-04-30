@@ -6,7 +6,7 @@ import TextInput from '../../components/molocules/Textinput';
 import Button from '../../components/atom/Button';
 import Gap from '../../components/atom/Gap';
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
   return (
     <View style={styles.page}>
       <Header title="Sign Up" />
@@ -21,7 +21,7 @@ const SignUp = () => {
         <Gap height={28} />
         <TextInput placeholder="Enter your Password" />
         <Gap height={28} />
-        <Button label="Sign Up" />
+        <Button label="Sign Up" onPress={() => navigation.navigate('SignIn')} />
       </View>
     </View>
   );
