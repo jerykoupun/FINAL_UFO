@@ -8,8 +8,10 @@ import Organization from './src/pages/Organization';
 import Lostandfound from './src/pages/Lostandfound';
 import Lostreport from './src/pages/Lostreport';
 import Foundreport from './src/pages/Foundreport';
+import Announcement from './src/pages/Announcement';
+import Profile from './src/pages/Profile';
 
 const App = () => {
-  return <Foundreport />;
+  return <Profile />;
 };
 export default App;
