@@ -1,9 +1,8 @@
 import React from 'react';
-import {StyleSheet, View, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Image, Text} from 'react-native';
 import Gap from '../../components/atom/Gap';
 import {Null_Photo} from '../../assets';
 import Header from '../../components/molocules/Header';
-import TextInput from '../../components/molocules/Textinput2';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {showMessage} from 'react-native-flash-message';
 import {useState} from 'react';
@@ -41,13 +40,19 @@ const Profile = () => {
             <Image source={photo} style={styles.avatar} />
           </TouchableOpacity>
         </View>
-        <TextInput label="Username" placeholder="Enter your username" />
-        <Gap height={20} />
-        <TextInput label="Phone Number" placeholder="Enter your phone number" />
-        <Gap height={20} />
-        <TextInput label="Email" placeholder="Enter your Email" />
-        <Gap height={20} />
-        <TextInput label="Address" placeholder="Enter your address" />
+        <View style={styles.infoContainer}>
+          <Text style={styles.label}>Username</Text>
+          <Gap height={20} />
+          <View style={styles.inputBox}>
+            <Text style={styles.inputText}>Jery Koupun</Text>
+          </View>
+          <Gap height={20} />
+          <Text style={styles.label}>Email</Text>
+          <Gap height={20} />
+          <View style={styles.inputBox}>
+            <Text style={styles.inputText}>YoungBoy@gmail.com</Text>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -76,5 +81,24 @@ const styles = StyleSheet.create({
     borderRadius: 55,
     borderColor: '#3674B5',
     borderWidth: 3,
+  },
+  label: {
+    fontSize: 16,
+    color: '#000',
+    fontFamily: 'Poppins-Medium',
+  },
+  inputBox: {
+    backgroundColor: '#D8E0E7',
+    borderRadius: 8,
+    padding: 12,
+    width: 312,
+    height: 48,
+    borderColor: '#3674B5',
+    borderWidth: 1,
+  },
+  inputText: {
+    fontSize: 15,
+    color: '#000000',
+    fontFamily: 'Poppins-Regular',
   },
 });
