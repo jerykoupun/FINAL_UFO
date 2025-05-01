@@ -6,8 +6,9 @@ import Header from '../../components/molocules/Header';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {showMessage} from 'react-native-flash-message';
 import {useState} from 'react';
+import Button from '../../components/atom/Button';
 
-const Profile = () => {
+const Profile = ({navigation}) => {
   const [photo, setPhoto] = useState(Null_Photo);
 
   const getImage = async () => {
@@ -53,6 +54,12 @@ const Profile = () => {
             <Text style={styles.inputText}>YoungBoy@gmail.com</Text>
           </View>
         </View>
+        <Gap height={40} />
+        <Button
+          label="Log Out"
+          color="#578FCA"
+          onPress={() => navigation.navigate('SignIn')}
+        />
       </View>
     </View>
   );
@@ -91,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#D8E0E7',
     borderRadius: 8,
     padding: 12,
-    width: 312,
+    width: 321,
     height: 48,
     borderColor: '#3674B5',
     borderWidth: 1,
