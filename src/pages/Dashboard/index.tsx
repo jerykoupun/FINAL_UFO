@@ -1,7 +1,9 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Gap from '../../components/atom/Gap';
+import {getDatabase, ref, onValue} from 'firebase/database';
+import {Null_Photo} from '../../assets';
 
 import {
   Logo,
@@ -14,16 +16,37 @@ import {
   Image2,
 } from '../../assets';
 
-const Dashboard = ({navigation}) => {
+const Dashboard = ({navigation, route}) => {
+  const {uid, username: initialUsername, email: initialEmail} = route.params;
+  const [username, setUsername] = useState(initialUsername);
+  const [email, setEmail] = useState(initialEmail);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const userRef = ref(db, 'users/' + uid);
+    onValue(userRef, snapshot => {
+      const data = snapshot.val();
+      setUsername(data.username);
+      setEmail(data.email);
+    });
+  }, []);
+
   return (
     <View style={styles.page}>
       <View style={styles.topBar}>
         <Logo width={34} height={32} />
-        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-          <Profileicon width={31} height={31} />
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('Profile', {
+              uid: uid,
+              username: username,
+              email: email,
+            })
+          }>
+          <Image source={Null_Photo} style={styles.profil} />
         </TouchableOpacity>
       </View>
-      <Text style={styles.welcomeText}>Hi, Jery Koupun</Text>
+      <Text style={styles.welcomeText}>{`Hi, ${username}`}</Text>
       <View style={styles.menuContainer}>
         <TouchableOpacity
           style={styles.menuItem}
@@ -164,5 +187,9 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontFamily: 'Poppins-Medium',
     paddingRight: 180,
+  },
+  profil: {
+    width: 31,
+    height: 31,
   },
 });

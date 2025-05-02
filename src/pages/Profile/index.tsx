@@ -5,11 +5,25 @@ import {Null_Photo} from '../../assets';
 import Header from '../../components/molocules/Header';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {showMessage} from 'react-native-flash-message';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Button from '../../components/atom/Button';
+import {getDatabase, ref, update, onValue} from 'firebase/database';
 
-const Profile = ({navigation}) => {
+const Profile = ({navigation, route}) => {
+  const {username, email, uid} = route.params || {};
   const [photo, setPhoto] = useState(Null_Photo);
+
+  useEffect(() => {
+    setPhoto(Null_Photo);
+    const db = getDatabase();
+    const userRef = ref(db, 'users/' + uid);
+    onValue(userRef, snapshot => {
+      const data = snapshot.val();
+      if (data?.photo) {
+        setPhoto({uri: data.photo});
+      }
+    });
+  }, []);
 
   const getImage = async () => {
     const result = await launchImageLibrary({
@@ -30,6 +44,22 @@ const Profile = ({navigation}) => {
       const base64 = `data:${assets.type};base64, ${assets.base64}`;
       const source = {uri: base64};
       setPhoto(source);
+
+      const db = getDatabase();
+      const userRef = ref(db, 'users/' + uid);
+      update(userRef, {photo: base64})
+        .then(() => {
+          showMessage({
+            message: 'Foto berhasil disimpan',
+            type: 'success',
+          });
+        })
+        .catch(error => {
+          showMessage({
+            message: error.message,
+            type: 'danger',
+          });
+        });
     }
   };
   return (
@@ -45,13 +75,13 @@ const Profile = ({navigation}) => {
           <Text style={styles.label}>Username</Text>
           <Gap height={20} />
           <View style={styles.inputBox}>
-            <Text style={styles.inputText}>Jery Koupun</Text>
+            <Text style={styles.inputText}>{`${username}`}</Text>
           </View>
           <Gap height={20} />
           <Text style={styles.label}>Email</Text>
           <Gap height={20} />
           <View style={styles.inputBox}>
-            <Text style={styles.inputText}>YoungBoy@gmail.com</Text>
+            <Text style={styles.inputText}>{`${email}`}</Text>
           </View>
         </View>
         <Gap height={40} />

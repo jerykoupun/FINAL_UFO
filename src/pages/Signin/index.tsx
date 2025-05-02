@@ -7,6 +7,7 @@ import Gap from '../../components/atom/Gap';
 import {getAuth, signInWithEmailAndPassword} from 'firebase/auth';
 import {showMessage} from 'react-native-flash-message';
 import {useState} from 'react';
+import {getDatabase, ref, get} from 'firebase/database';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -14,14 +15,29 @@ const SignIn = ({navigation}) => {
 
   const onSubmit = () => {
     const auth = getAuth();
+    const db = getDatabase();
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         const user = userCredential.user;
-        showMessage({
-          message: 'Sign In Successful',
-          type: 'success',
+        get(ref(db, 'users/' + user.uid)).then(snapshot => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            showMessage({
+              message: 'Sign In Successful',
+              type: 'success',
+            });
+            navigation.navigate('Dashboard', {
+              uid: user.uid,
+              username: data.username,
+              email: data.email,
+            });
+          } else {
+            showMessage({
+              message: 'User not found',
+              type: 'danger',
+            });
+          }
         });
-        console.log(user);
       })
       .catch(error => {
         showMessage({
@@ -30,6 +46,7 @@ const SignIn = ({navigation}) => {
         });
       });
   };
+
   return (
     <View style={styles.page}>
       <View style={styles.container}>
