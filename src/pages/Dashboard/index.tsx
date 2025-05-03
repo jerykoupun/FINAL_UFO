@@ -20,6 +20,7 @@ const Dashboard = ({navigation, route}) => {
   const {uid, username: initialUsername, email: initialEmail} = route.params;
   const [username, setUsername] = useState(initialUsername);
   const [email, setEmail] = useState(initialEmail);
+  const [photo, setPhoto] = useState(Null_Photo);
 
   useEffect(() => {
     const db = getDatabase();
@@ -28,8 +29,11 @@ const Dashboard = ({navigation, route}) => {
       const data = snapshot.val();
       setUsername(data.username);
       setEmail(data.email);
+      if (data.photo) {
+        setPhoto({uri: data.photo});
+      }
     });
-  }, []);
+  }, [uid]);
 
   return (
     <View style={styles.page}>
@@ -43,7 +47,7 @@ const Dashboard = ({navigation, route}) => {
               email: email,
             })
           }>
-          <Image source={Null_Photo} style={styles.profil} />
+          <Image source={photo} style={styles.profil} />
         </TouchableOpacity>
       </View>
       <Text style={styles.welcomeText}>{`Hi, ${username}`}</Text>
@@ -191,5 +195,6 @@ const styles = StyleSheet.create({
   profil: {
     width: 31,
     height: 31,
+    borderRadius: 15.5,
   },
 });

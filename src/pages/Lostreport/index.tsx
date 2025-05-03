@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -10,30 +10,135 @@ import Gap from '../../components/atom/Gap';
 import Button from '../../components/atom/Button';
 import Header from '../../components/molocules/Header';
 import TextInput from '../../components/molocules/Textinput2';
+import {showMessage} from 'react-native-flash-message';
+import {getDatabase, ref, get, push} from 'firebase/database';
+import {getAuth} from 'firebase/auth';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 const ReportLostItem = ({navigation}) => {
+  const [itemName, setItemName] = useState('');
+  const [lostLocation, setLostLocation] = useState('');
+  const [lostTime, setLostTime] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [username, setUsername] = useState('');
+  const [imageBase64, setImageBase64] = useState('');
+
+  useEffect(() => {
+    const auth = getAuth();
+    const db = getDatabase();
+    const user = auth.currentUser;
+
+    if (user) {
+      const userRef = ref(db, 'users/' + user.uid);
+      get(userRef)
+        .then(snapshot => {
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+            setUsername(userData.username);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching user data:', error);
+        });
+    }
+  }, []);
+
+  const pickImage = async () => {
+    const result = await launchImageLibrary({
+      mediaType: 'photo',
+      maxWidth: 1000,
+      maxHeight: 1000,
+      quality: 0.8,
+      includeBase64: true,
+    });
+
+    if (result.didCancel) {
+      showMessage({
+        message: 'Image selection canceled',
+        type: 'danger',
+      });
+    } else {
+      const assets = result.assets[0];
+      setImageBase64(assets.base64);
+    }
+  };
+
+  const onSubmit = () => {
+    if (!imageBase64) {
+      showMessage({
+        message: 'Please upload an image before submitting',
+        type: 'danger',
+      });
+      return;
+    }
+
+    const db = getDatabase();
+    const data = {
+      itemName: itemName,
+      lostLocation: lostLocation,
+      lostTime: lostTime,
+      phoneNumber: phoneNumber,
+      username: username,
+      imageBase64: imageBase64,
+      createdAt: new Date().toISOString(),
+    };
+
+    push(ref(db, 'lostItems/'), data)
+      .then(() => {
+        showMessage({
+          message: 'Report submitted successfully!',
+          type: 'success',
+        });
+        navigation.navigate('Lostandfound');
+      })
+      .catch(error => {
+        showMessage({
+          message: error.message,
+          type: 'danger',
+        });
+      });
+  };
+
   return (
     <View style={styles.page}>
       <Header title="Report Lost Item" />
       <ScrollView contentContainerStyle={styles.container}>
-        <TextInput label="Item Name" placeholder="Input Item Name" />
+        <TextInput
+          label="Item Name"
+          placeholder="Input Item Name"
+          onChangeText={e => setItemName(e)}
+        />
         <Gap height={20} />
-        <TextInput label="Lost Location" placeholder="Enter Lost Location" />
+        <TextInput
+          label="Lost Location"
+          placeholder="Enter Lost Location"
+          onChangeText={e => setLostLocation(e)}
+        />
         <Gap height={20} />
-        <TextInput label="Lost Time" placeholder="Enter Lost Time" />
+        <TextInput
+          label="Lost Time"
+          placeholder="Enter Lost Time"
+          onChangeText={e => setLostTime(e)}
+        />
         <Gap height={20} />
-        <TextInput label="Your Number" placeholder="Enter your phone number" />
+        <TextInput
+          label="Your Number"
+          placeholder="Enter your phone number"
+          onChangeText={e => setPhoneNumber(e)}
+        />
         <Gap height={20} />
         <Text style={styles.uploadLabel}>Upload Item Photo</Text>
         <Gap height={20} />
-        <TouchableOpacity style={styles.uploadBox}>
-          <Text style={styles.uploadText}>Upload Image</Text>
+        <TouchableOpacity style={styles.uploadBox} onPress={pickImage}>
+          <Text style={styles.uploadText}>
+            {imageBase64 ? 'Change Image' : 'Upload Image'}
+          </Text>
         </TouchableOpacity>
+        {imageBase64 ? (
+          <Text style={styles.imagePreview}>Image Selected</Text>
+        ) : null}
         <Gap height={20} />
-        <Button
-          label="Submit"
-          onPress={() => navigation.navigate('Lostandfound')}
-        />
+        <Button label="Submit" onPress={onSubmit} />
       </ScrollView>
     </View>
   );
@@ -71,5 +176,11 @@ const styles = StyleSheet.create({
     color: '#578FCA',
     fontSize: 16,
     fontFamily: 'Poppins-Reguler',
+  },
+  imagePreview: {
+    fontSize: 14,
+    color: 'green',
+    marginTop: 10,
+    fontFamily: 'Poppins-Light',
   },
 });

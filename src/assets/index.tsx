@@ -14,6 +14,7 @@ import Kacamata from './kacamata.svg';
 import Tas from './tas.svg';
 import Tasbulat from './tasbulat.svg';
 import Null_Photo from './null-photo.png';
+import Vocs from './Vocs.svg';
 
 export {
   Logo,
@@ -32,4 +33,5 @@ export {
   Tas,
   Tasbulat,
   Null_Photo,
+  Vocs,
 };

@@ -36,7 +36,7 @@ const Profile = ({navigation, route}) => {
 
     if (result.didCancel) {
       showMessage({
-        message: 'Pilih foto dibatalkan',
+        message: 'Image selection canceled',
         type: 'danger',
       });
     } else {
@@ -50,7 +50,7 @@ const Profile = ({navigation, route}) => {
       update(userRef, {photo: base64})
         .then(() => {
           showMessage({
-            message: 'Foto berhasil disimpan',
+            message: 'Photo saved successfully',
             type: 'success',
           });
         })
