@@ -15,6 +15,8 @@ import Tas from './tas.svg';
 import Tasbulat from './tasbulat.svg';
 import Null_Photo from './null-photo.png';
 import Vocs from './Vocs.svg';
+import Galery3 from './Galery3.svg';
+import Galery4 from './Galery4.svg';
 
 export {
   Logo,
@@ -34,4 +36,6 @@ export {
   Tasbulat,
   Null_Photo,
   Vocs,
+  Galery3,
+  Galery4,
 };

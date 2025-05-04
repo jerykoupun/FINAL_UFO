@@ -7,7 +7,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Gap from '../../components/atom/Gap';
-import {Organisasifoto, Galery1, Galery2, Vocs} from '../../assets';
+import {
+  Organisasifoto,
+  Galery1,
+  Galery2,
+  Vocs,
+  Galery3,
+  Galery4,
+} from '../../assets';
 import Header from '../../components/molocules/Header';
 
 const Organization = () => {
@@ -34,8 +41,8 @@ const Organization = () => {
         'To sing for the glory of God, fostering unity and spiritual growth through music and collaboration.',
       image: <Vocs width={312} height={180} />,
       gallery: [
-        {image: <Galery1 width={264} height={168} />, date: 'March 2025'},
-        {image: <Galery2 width={264} height={168} />, date: 'March 2025'},
+        {image: <Galery3 width={264} height={168} />, date: 'March 2025'},
+        {image: <Galery4 width={264} height={168} />, date: 'April 2025'},
       ],
     },
   };
